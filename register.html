@@ -5,12 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abc Bank:AboutUS</title>
+    <style>
+        body{
+            background-color: rgb(135, 31, 66);
+            color: azure;
+        }
+        a:link{
+            color: rgb(135, 31, 66);
+            text-transform: capitalize;
+        }
+        a:hover{
+           text-decoration-line: overline;
+           color: azure;
+           background-color: rgb(135, 31, 66);
+        }
+        header,footer{
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px;
+            background-color: white;
+            color: rgb(135, 31, 66);
+        }
+        #logreg{
+            color: cyan;
+
+        }
+        #logreg:hover{
+            background-color: white;
+            color: blue;
+        }
+
+    </style>
 </head>
 <header><a href="index.html">Home</a>|<a href="aboutus.html">About Us</a>|<a href="services.html">Services</a>|<a href="login.html">Net Banking</a>|<a href="contactus.html">Contact Us</a></header>
 <body>
+    <marquee behavior="" direction="" style="font-size:20px">Monsoon Offer: Flat 10% off on all purchases done through net banking, mobile banking, debit and credit cards.</marquee>
     
+    <h1>AXES Bank</h1>
     
 <h1>Register page</h1>
+<img src="https://gpparsikbank.com/images/internet-banking.jpg" alt="" height="300" width="600">
 <form action="">
     <h3>
         UserId: <input type="text" name="uid" id=""><br>
@@ -21,7 +55,7 @@
         <input type="reset" value="CLEAR">
     </h3>
 </form>
-<small>Already a member? <a href="login.html">Login</a></small>
+<small>Already a member? <a id="logreg" href="login.html">Login</a></small>
 </body>
 <footer style="position:static;bottom:0;">Copyright © 2022 Abc Bank | Disclaimer | Privacy Policy | Code of Commitment | Responsible Disclosure Policy</footer>
 </html>
