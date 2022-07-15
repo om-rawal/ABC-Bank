@@ -5,6 +5,127 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abc Bank:AboutUS</title>
+    <script>
+        var flag=true;
+        var str=`<h2>Please Enter deatils: </h2>
+            <form  name="f1">
+                <h3>
+                    Applicant Name: <input type="text" name="name"><br>
+                    Type of loan: <select name="typeOfLoan" id="typeOfLoan" onchange="setRoi()">
+                        <option value="home">Home</option>
+                        <option value="car">Car</option>
+                        <option value="personal">Personal</option>
+                    </select> <br>
+                    Amount: <input type="number" name="amount" min="10_000" id="amount"><br>
+                    ROI: <input type="number" name="roi" disabled id="roi" value="7"><br>
+                    Duration (in yrs): <input type="number" name="duration" id="duration" min="1"><br><br>
+                    Calculated EMI : <input type="number" name="emi" id="emi" disabled><br><br><br>
+                    <input type="button" value="CALCULATE EMI" onclick="calculateEmi()">
+                    <input type="reset" value="RESET">
+                </h3>
+            </form>`;
+        function activateLoan(){
+            if(flag){
+                document.getElementById("loan").style.background = "white";
+                document.getElementById("loan").style.color = "rgb(135, 31, 66)";
+                document.getElementById("loanDiv").innerHTML = str;
+            }
+            else{
+                document.getElementById("loan").style.background = "rgb(135, 31, 66)";
+                document.getElementById("loan").style.color = "white";
+                document.getElementById("loanDiv").innerHTML = "";
+            }
+            
+            flag=!flag;
+        }
+        function isValid() {
+            var loanType=document.getElementById("typeOfLoan").value;
+            var roi=document.getElementById("roi").value;
+            var duration=document.getElementById("duration").value;
+            if(loanType=="car"){
+                if(roi==9){
+                    if(duration<=7){
+                        return true;
+                    }
+                    else{
+                        alert("Duration for car loan can not be more than 7 years!");
+                        return false;
+                    }
+                }
+                else{
+                    alert("ROI for car loan should be 9!");
+                        return false;
+                }
+            }
+            else if(loanType=="home"){
+                if(roi==7){
+                    if(duration<=25){
+                        return true;
+                    }
+                    else{
+                        alert("Duration for home loan can not be more than 25 years!");
+                        return false;
+                    }
+                }
+                else{
+                    alert("ROI for home loan should be 7!");
+                        return false;
+                }
+            }
+            else if(loanType=="personal"){
+                if(roi==12){
+                    if(duration<=5){
+                        return true;
+                    }
+                    else{
+                        alert("Duration for home loan can not be more than 5 years!");
+                        return false;
+                    }
+                }
+                else{
+                    alert("ROI for home loan should be 12!");
+                        return false;
+                }
+            }
+            else{
+                alert("Some error in determining loan type")
+            }
+        }
+
+        function setRoi() {
+            var loanType=document.getElementById("typeOfLoan").value;
+            console.log("Loan type is: "+loanType)
+            var roi=null;
+            if(loanType=="car"){
+                roi=9;
+            }
+            else if(loanType=="home"){
+                roi=7
+            }
+            else if(loanType=="personal"){
+                roi=12;
+            }
+            document.getElementById('roi').value=parseInt(roi);
+        }
+        function calculateEmi(){
+            valid=isValid();
+            if(valid){
+                var amount=parseInt(document.getElementById("amount").value);
+                var roi=parseInt(document.getElementById("roi").value);
+                var duration=parseInt(document.getElementById("duration").value);
+                var emi=(duration*amount*roi)/100;
+                document.getElementById("emi").value=emi;
+
+            }
+            else{
+                // alert("Bad Input found")
+                console.log("Bad Input cannot calculate EMI" )
+            }
+        }
+
+        
+        
+    </script>
     <style>
         body{
             background-color: rgb(135, 31, 66);
@@ -41,8 +162,11 @@
     
 <h1>Our Services</h1>
     <img src="https://fccb.org.in/wp-content/uploads/2020/01/banking-services.png" alt="Services" height="350"width="300">
-    <ul>
-        <li>Advancements of loans</li>
+    <ul style="font-size: 18px;">
+        <li id="loan" onclick="activateLoan()" style="text-decoration-line: underline">Loans Click to know more</li>
+        <div id="loanDiv">
+            
+        </div>
         <li>Cheque payments</li>
         <li>Discounting on bills of exchange</li>
         <li>Collecting and paying the credit instruments</li>
